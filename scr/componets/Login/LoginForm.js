@@ -1,20 +1,27 @@
 import React, {Component} from 'react';
-import  {StyleSheet, View, TextInput, TouchableOpacity, Text, KeyboardAvoidingView} from 'react-native';
+import  {StyleSheet, View, TextInput, TouchableOpacity, Text, StatusBar} from 'react-native';
 
 export default class LoginForm extends Component{
     render (){
-        return(            
-            <KeyboardAvoidingView behavior="padding" style ={styles.container}>
+        return(     
+            <View style ={styles.container}>   
+            <StatusBar
+            barStyle="light-content"
+            />   
                 <TextInput
                 placeholder='usuario o correo'
                 placeholderTextColor='rgba(255,255,255,0.5)'
-                returnKeyType="Siguiente"    
+                returnKeyType="next"    
+                onSubmitEditing={()=> this.passwordInput.focus}
+                keyboardType="email-address"
+                autoCapitalize="none"
+                auto={false}
                 style={styles.input}
                 />
                 <TextInput
                  placeholder='contraseña'
                  placeholderTextColor='rgba(255,255,255,0.5)'
-                 returnKeyType="Entrar"   
+                 returnKeyType="Go"   
                  secureTextEntry
                  style={styles.input}
                  ref={(input)=> this.passwordInput =input}
@@ -24,7 +31,7 @@ export default class LoginForm extends Component{
                         INICIO SESIÓN
                     </Text>
                 </TouchableOpacity>
-            </KeyboardAvoidingView>
+            </View>
         );
     }
 }
@@ -46,7 +53,6 @@ const styles = StyleSheet.create({
     buttonContainer:{
         backgroundColor:'#2980b9',
         paddingVertical:15
-
     },
 
     buttonText:{
